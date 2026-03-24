@@ -70,7 +70,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Fr
 .bb:active{transform:translateY(3px);box-shadow:0 2px 0 #4a0000;}
 .bb.s{background:linear-gradient(135deg,#222,#0e0e0e);box-shadow:0 5px 0 #000;}
 .bb.g{background:linear-gradient(135deg,#ffd700,#bb7700);color:#222;box-shadow:0 5px 0 #775500;}
-.lg{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:2px;}
+.lg{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:2px;max-height:58vh;overflow-y:auto;padding-right:2px;}
+.lg::-webkit-scrollbar{width:3px;}
+.lg::-webkit-scrollbar-thumb{background:rgba(255,80,60,0.4);border-radius:3px;}
 .lc{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,100,70,0.22);
   border-radius:9px;padding:7px 3px;text-align:center;cursor:pointer;transition:all 0.14s;color:#fff;}
 .lc:hover{background:rgba(255,40,40,0.2);border-color:rgba(255,100,70,0.58);transform:translateY(-2px);}
@@ -231,30 +233,40 @@ const bgP=Array.from({length:60},()=>({x:Math.random()*bgC.width,y:Math.random()
 (function ab(){bgX.clearRect(0,0,bgC.width,bgC.height);bgP.forEach(p=>{p.a+=p.s;const al=(Math.sin(p.a)+1)/2*0.38+0.04;bgX.beginPath();bgX.arc(p.x,p.y,p.r,0,Math.PI*2);bgX.fillStyle=`rgba(255,155,120,${al})`;bgX.fill();});requestAnimationFrame(ab);})();
 
 /* =======================================================
-   20 LEVELS META
+   30 LEVELS META
 ======================================================= */
-const TOTAL=20;
+const TOTAL=30;
 const LM=[
-  {n:1, i:'🌳',nm:'Forest 1',   df:'⭐'},
-  {n:2, i:'🌲',nm:'Forest 2',   df:'⭐'},
-  {n:3, i:'🌸',nm:'Meadow',     df:'⭐'},
-  {n:4, i:'🍄',nm:'Mushroom',   df:'⭐⭐'},
-  {n:5, i:'🌅',nm:'Sunset 1',   df:'⭐⭐'},
-  {n:6, i:'🌄',nm:'Sunset 2',   df:'⭐⭐'},
-  {n:7, i:'🏔️',nm:'Mountain',  df:'⭐⭐'},
-  {n:8, i:'🌊',nm:'Ocean',      df:'⭐⭐⭐'},
-  {n:9, i:'❄️', nm:'Ice Cave',  df:'⭐⭐⭐'},
-  {n:10,i:'🔥',nm:'Volcano',    df:'⭐⭐⭐'},
-  {n:11,i:'🕸️',nm:'Spider Web',df:'⭐⭐⭐'},
-  {n:12,i:'🔮',nm:'Night 1',    df:'💀'},
-  {n:13,i:'🌑',nm:'Night 2',    df:'💀'},
-  {n:14,i:'💎',nm:'Crystal',    df:'💀'},
-  {n:15,i:'🕳️',nm:'Abyss',     df:'💀'},
-  {n:16,i:'⚡',nm:'Thunder',    df:'💀💀'},
-  {n:17,i:'🌪️',nm:'Storm',     df:'💀💀'},
-  {n:18,i:'☠️',nm:'Death Run',  df:'💀💀'},
-  {n:19,i:'🔴',nm:'Red Zone',   df:'💀💀💀'},
-  {n:20,i:'👑',nm:'FINAL BOSS', df:'👑'},
+  {n:1, i:'🌳',nm:'Forest 1',    df:'⭐'},
+  {n:2, i:'🌲',nm:'Forest 2',    df:'⭐'},
+  {n:3, i:'🌸',nm:'Meadow',      df:'⭐'},
+  {n:4, i:'🍄',nm:'Mushroom',    df:'⭐⭐'},
+  {n:5, i:'🌅',nm:'Sunset 1',    df:'⭐⭐'},
+  {n:6, i:'🌄',nm:'Sunset 2',    df:'⭐⭐'},
+  {n:7, i:'🏔️',nm:'Mountain',   df:'⭐⭐'},
+  {n:8, i:'🌊',nm:'Ocean',       df:'⭐⭐⭐'},
+  {n:9, i:'❄️',nm:'Ice Cave',    df:'⭐⭐⭐'},
+  {n:10,i:'🔥',nm:'Volcano',     df:'⭐⭐⭐'},
+  {n:11,i:'🕸️',nm:'Spider Web', df:'⭐⭐⭐'},
+  {n:12,i:'🌋',nm:'Lava Land',   df:'⭐⭐⭐'},
+  {n:13,i:'🏜️',nm:'Desert',     df:'💀'},
+  {n:14,i:'🔮',nm:'Night 1',     df:'💀'},
+  {n:15,i:'🌑',nm:'Night 2',     df:'💀'},
+  {n:16,i:'💎',nm:'Crystal',     df:'💀'},
+  {n:17,i:'🕳️',nm:'Abyss',      df:'💀'},
+  {n:18,i:'🌌',nm:'Galaxy',      df:'💀'},
+  {n:19,i:'⚡',nm:'Thunder',     df:'💀💀'},
+  {n:20,i:'🌪️',nm:'Storm',      df:'💀💀'},
+  {n:21,i:'🧊',nm:'Frozen Hell', df:'💀💀'},
+  {n:22,i:'🦇',nm:'Dark Cave',   df:'💀💀'},
+  {n:23,i:'☠️',nm:'Death Run',   df:'💀💀'},
+  {n:24,i:'🩸',nm:'Blood Moon',  df:'💀💀💀'},
+  {n:25,i:'🔴',nm:'Red Zone',    df:'💀💀💀'},
+  {n:26,i:'🌑',nm:'Shadow Realm',df:'💀💀💀'},
+  {n:27,i:'💣',nm:'Danger Zone', df:'💀💀💀'},
+  {n:28,i:'🔱',nm:'Hell Gate',   df:'💀💀💀'},
+  {n:29,i:'😈',nm:'Demon World', df:'💀💀💀'},
+  {n:30,i:'👑',nm:'FINAL BOSS',  df:'👑👑'},
 ];
 const grid=document.getElementById('lgrid');
 LM.forEach(lm=>{
@@ -268,7 +280,7 @@ LM.forEach(lm=>{
 ======================================================= */
 function showScr(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('gameWrapper').style.display='none';document.getElementById(id).classList.add('active');}
 function hideAll(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));}
-function cred(){alert('🔴 Red Ball — 20 Levels Edition\n\n⚡ Developer: Muhammed Usman\n\nHTML5 Canvas + Web Audio\n❤️ Enjoy!');}
+function cred(){alert('🔴 Red Ball — 30 Levels Edition\n\n⚡ Developer: Muhammed Usman\n\nHTML5 Canvas + Web Audio\n❤️ Enjoy!');}
 
 /* =======================================================
    GAME CORE
@@ -296,32 +308,51 @@ let score=0,lives=3,stars=0,curLvl=1;
 let lv,pl,parts=[],camX=0,raf2;
 let jpressed=false;
 
-function rcv(){const wr=document.getElementById('gameWrapper');W=wr.clientWidth;H=wr.clientHeight-34;canvas.width=W;canvas.height=H;}
+let PLAY_H=400;
+function rcv(){
+  const wr=document.getElementById('gameWrapper');
+  W=wr.clientWidth;
+  H=wr.clientHeight-34;
+  canvas.width=W;
+  canvas.height=H;
+  // Visible play area above mobile controls (88px)
+  PLAY_H=H-92;
+}
 
 /* =======================================================
-   THEMES
+   THEMES (30)
 ======================================================= */
 const TH=[
-  {sky:['#5ec8f0','#c0e8ff'],pc:'#4a8c28'},  //1
-  {sky:['#48b8e0','#a8d8ff'],pc:'#3a7820'},  //2
-  {sky:['#6ed870','#b8f0a0'],pc:'#227722'},  //3
-  {sky:['#88cc44','#ccee88'],pc:'#4a8820'},  //4 mushroom
-  {sky:['#ff9c56','#ffd080'],pc:'#8c6030'},  //5
-  {sky:['#ff7a30','#ffb060'],pc:'#7a5020'},  //6
-  {sky:['#8899aa','#c8d8e8'],pc:'#4a6070'},  //7
-  {sky:['#1a6688','#55aacc'],pc:'#1a5577'},  //8
-  {sky:['#aaccee','#ddeeff'],pc:'#7799bb'},  //9 ice
-  {sky:['#330800','#881a00'],pc:'#662211'},  //10
-  {sky:['#221108','#553322'],pc:'#4a2210'},  //11
-  {sky:['#160428','#3d0a66'],pc:'#3a1860'},  //12
-  {sky:['#050510','#1a0530'],pc:'#2a1048'},  //13
-  {sky:['#001030','#003060'],pc:'#1a3055'},  //14
-  {sky:['#000000','#0a0010'],pc:'#1a0028'},  //15
-  {sky:['#060010','#001830'],pc:'#002244'},  //16
-  {sky:['#030010','#100028'],pc:'#180040'},  //17
-  {sky:['#100000','#300000'],pc:'#280000'},  //18
-  {sky:['#100000','#1a0000'],pc:'#300000'},  //19
-  {sky:['#000000','#150000'],pc:'#330000'},  //20
+  {sky:['#5ec8f0','#c0e8ff'],pc:'#4a8c28'},  //1 Forest1
+  {sky:['#48b8e0','#a8d8ff'],pc:'#3a7820'},  //2 Forest2
+  {sky:['#6ed870','#b8f0a0'],pc:'#227722'},  //3 Meadow
+  {sky:['#88cc44','#ccee88'],pc:'#4a8820'},  //4 Mushroom
+  {sky:['#ff9c56','#ffd080'],pc:'#8c6030'},  //5 Sunset1
+  {sky:['#ff7a30','#ffb060'],pc:'#7a5020'},  //6 Sunset2
+  {sky:['#8899aa','#c8d8e8'],pc:'#4a6070'},  //7 Mountain
+  {sky:['#1a6688','#55aacc'],pc:'#1a5577'},  //8 Ocean
+  {sky:['#aaccee','#ddeeff'],pc:'#7799bb'},  //9 Ice Cave
+  {sky:['#330800','#881a00'],pc:'#662211'},  //10 Volcano
+  {sky:['#221108','#553322'],pc:'#4a2210'},  //11 Spider
+  {sky:['#440800','#992200'],pc:'#771800'},  //12 Lava Land
+  {sky:['#cc9944','#ffdd88'],pc:'#886622'},  //13 Desert
+  {sky:['#160428','#3d0a66'],pc:'#3a1860'},  //14 Night1
+  {sky:['#050510','#1a0530'],pc:'#2a1048'},  //15 Night2
+  {sky:['#001030','#003060'],pc:'#1a3055'},  //16 Crystal
+  {sky:['#000000','#0a0010'],pc:'#1a0028'},  //17 Abyss
+  {sky:['#000510','#001530'],pc:'#002244'},  //18 Galaxy
+  {sky:['#060018','#001838'],pc:'#002255'},  //19 Thunder
+  {sky:['#030010','#100028'],pc:'#180040'},  //20 Storm
+  {sky:['#001020','#003050'],pc:'#004060'},  //21 Frozen
+  {sky:['#000000','#050010'],pc:'#0a0020'},  //22 Dark Cave
+  {sky:['#100000','#300000'],pc:'#280000'},  //23 Death Run
+  {sky:['#200000','#400000'],pc:'#380000'},  //24 Blood Moon
+  {sky:['#100000','#1a0000'],pc:'#300000'},  //25 Red Zone
+  {sky:['#050005','#100010'],pc:'#200020'},  //26 Shadow
+  {sky:['#0a0000','#200000'],pc:'#2a0000'},  //27 Danger
+  {sky:['#080000','#1a0000'],pc:'#250000'},  //28 Hell Gate
+  {sky:['#050000','#150000'],pc:'#200000'},  //29 Demon
+  {sky:['#000000','#100000'],pc:'#330000'},  //30 Final Boss
 ];
 
 
@@ -333,10 +364,11 @@ const TH=[
 ======================================================= */
 function genLevel(n){
   const diff=(n-1)/(TOTAL-1); // 0..1
-  const th=TH[Math.min(n-1,19)];
+  const th=TH[Math.min(n-1,29)];
   const mapW=1900+n*250;
   const platH=Math.max(20,48-diff*18);
-  const baseY=H-55;
+  // baseY = bottom of VISIBLE area (above mobile controls)
+  const baseY=PLAY_H-45;
   const platforms=[];
 
   // Start platform — always wide and safe
@@ -355,8 +387,8 @@ function genLevel(n){
     const maxDY=Math.min(MAX_JUMP_HEIGHT-20, 30+diff*100);
     const dy=(Math.random()-0.5)*maxDY*2;
     let y=Math.round(prevY+dy);
-    // Clamp to screen
-    y=Math.max(H*0.25, Math.min(baseY+20, y));
+    // Clamp to visible play area
+    y=Math.max(PLAY_H*0.22, Math.min(baseY+10, y));
 
     const w=Math.round(Math.max(58, 110-diff*22+Math.random()*50));
     const x=Math.round(prevRight+gap);
@@ -382,16 +414,16 @@ function genLevel(n){
   for(const p of candidates){
     if(placed>=enemyCount)break;
     if(p.w<55)continue;
-    const boss=n===20&&placed===0;
-    const big=n>=10;
-    const sz=boss?46:big?36:n>=6?32:28;
+    const boss=n===30&&placed===0;
+    const big=n>=12;
+    const sz=boss?48:big?38:n>=7?32:28;
     enemyList.push({
       x:p.x+6, y:p.y-sz,
       w:sz, h:Math.round(sz*0.84),
       dir:Math.random()>.5?1:-1,
-      spd:(1.3+diff*2.6)*(0.82+Math.random()*0.36),
+      spd:(1.2+diff*3.0)*(0.82+Math.random()*0.36),
       vy:0, onGround:false, dead:false,
-      platRef:p, angry:n>=6, boss,
+      platRef:p, angry:n>=7, boss,
     });
     placed++;
   }
@@ -580,7 +612,7 @@ function update(){
   }
 
   // Fall off map
-  if(pl.y>H+80){
+  if(pl.y>PLAY_H+80){
     lives--;updHUD();
     if(lives<=0){gs='dead';SFX.die();setTimeout(showDead,400);return;}
     const ps=lv.playerStart;
@@ -598,10 +630,13 @@ function update(){
 ======================================================= */
 function draw(){
   ctx.clearRect(0,0,W,H);
-  // Sky
+  // Sky — full canvas
   const sg=ctx.createLinearGradient(0,0,0,H);
   sg.addColorStop(0,lv.sky[0]);sg.addColorStop(1,lv.sky[1]);
   ctx.fillStyle=sg;ctx.fillRect(0,0,W,H);
+  // Ground fill below play area (covers mobile controls overlap)
+  ctx.fillStyle=ltn(lv.pc,-10);
+  ctx.fillRect(0,PLAY_H,W,H-PLAY_H+2);
   drawBg();
   ctx.save();ctx.translate(-camX,0);
   lv.platforms.forEach(drawPlat);
@@ -738,16 +773,20 @@ function drawBg(){
   }
   if(n===8||n===9){// Waves
     const t=Date.now()/1300;ctx.fillStyle=n===8?'rgba(0,80,200,0.1)':'rgba(180,230,255,0.1)';
-    ctx.beginPath();ctx.moveTo(0,H);for(let x=0;x<=W;x+=6)ctx.lineTo(x,H-16+Math.sin(x/36+t)*8);ctx.lineTo(W,H);ctx.closePath();ctx.fill();
+    ctx.beginPath();ctx.moveTo(0,PLAY_H);for(let x=0;x<=W;x+=6)ctx.lineTo(x,PLAY_H-16+Math.sin(x/36+t)*8);ctx.lineTo(W,PLAY_H);ctx.closePath();ctx.fill();
   }
   if(n===10){// Volcano particles
-    const t=Date.now()/900;for(let i=0;i<4;i++){const x=(i*210+85);const y=H-32+Math.sin(t+i*1.5)*10;const gw=ctx.createRadialGradient(x,y,2,x,y,20);gw.addColorStop(0,'rgba(255,80,0,0.2)');gw.addColorStop(1,'transparent');ctx.fillStyle=gw;ctx.beginPath();ctx.arc(x,y,20,0,Math.PI*2);ctx.fill();}
+    const t=Date.now()/900;for(let i=0;i<4;i++){const x=(i*210+85);const y=PLAY_H-32+Math.sin(t+i*1.5)*10;const gw=ctx.createRadialGradient(x,y,2,x,y,20);gw.addColorStop(0,'rgba(255,80,0,0.2)');gw.addColorStop(1,'transparent');ctx.fillStyle=gw;ctx.beginPath();ctx.arc(x,y,20,0,Math.PI*2);ctx.fill();}
   }
-  if(n>=12){// Night stars
-    const t=Date.now()/1100;for(let i=0;i<22;i++){const x=(i*143+Math.sin(t*0.18+i)*5)%W;const y=(i*71+Math.cos(t*0.13+i)*5)%(H*0.52);const a=(Math.sin(t+i)+1)/2*0.3+0.05;ctx.fillStyle=n>=18?`rgba(255,40,40,${a})`:n>=15?`rgba(80,150,255,${a})`:`rgba(150,90,255,${a})`;ctx.beginPath();ctx.arc(x,y,1.2,0,Math.PI*2);ctx.fill();}
+  if(n>=14){// Night stars / space
+    const t=Date.now()/1100;for(let i=0;i<22;i++){const x=(i*143+Math.sin(t*0.18+i)*5)%W;const y=(i*71+Math.cos(t*0.13+i)*5)%(H*0.52);const a=(Math.sin(t+i)+1)/2*0.3+0.05;ctx.fillStyle=n>=24?`rgba(255,40,40,${a})`:n>=18?`rgba(80,150,255,${a})`:n>=16?`rgba(80,200,255,${a})`:`rgba(150,90,255,${a})`;ctx.beginPath();ctx.arc(x,y,1.2,0,Math.PI*2);ctx.fill();}
   }
-  if(n>=18){// Lava drips
-    const t=Date.now()/700;for(let i=0;i<6;i++){const x=i*(W/5)+Math.sin(t+i)*18;const gw=ctx.createLinearGradient(x,H,x,H-55);gw.addColorStop(0,'rgba(255,50,0,0.38)');gw.addColorStop(1,'transparent');ctx.fillStyle=gw;ctx.fillRect(x-7,H-55,14,55);}
+  if(n>=23){// Lava drips
+    const t=Date.now()/700;for(let i=0;i<6;i++){const x=i*(W/5)+Math.sin(t+i)*18;const gw=ctx.createLinearGradient(x,PLAY_H,x,PLAY_H-55);gw.addColorStop(0,'rgba(255,50,0,0.38)');gw.addColorStop(1,'transparent');ctx.fillStyle=gw;ctx.fillRect(x-7,PLAY_H-55,14,55);}
+  }
+  if(n===30){// FINAL BOSS — dramatic red lightning
+    const t=Date.now()/400;if(Math.sin(t)>0.92){ctx.fillStyle='rgba(255,0,0,0.06)';ctx.fillRect(0,0,W,H);}
+    for(let i=0;i<3;i++){const x=W*0.2+i*W*0.3+Math.sin(t+i*2)*15;ctx.strokeStyle=`rgba(255,${50+i*30},0,0.4)`;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,0);for(let y2=0;y2<PLAY_H;y2+=20)ctx.lineTo(x+Math.sin(t*3+y2)*12,y2);ctx.stroke();}
   }
 }
 
